@@ -18,7 +18,7 @@ public class Bank
         Clienti = new List<Cliente>();
         Prestiti = new List<Prestito>();
     }
-
+    //effettuare delle ricerche sul cliente dato il codice fiscale
     public Cliente RicercaCliente(string codiceFiscale)
     {
         Cliente trovato = null;
@@ -32,11 +32,16 @@ public class Bank
         return trovato;
     }
 
+    //effettuare delle ricerche sui prestiti concessi ad un cliente dato il codice fiscale
     public List<Prestito> RicercaPrestito(string codiceFiscale)
     {
         List<Prestito> prestitiTrovati = new List<Prestito>();
 
-        //algoritmo ricerca
+        foreach(Prestito prestito in Prestiti)
+        {
+            if (prestito.Intestatario.CodiceFiscale == codiceFiscale)
+            prestitiTrovati.Add(prestito);
+        }
 
         return prestitiTrovati;
     }
@@ -70,19 +75,45 @@ public class Bank
 
     public int AmmontareTotalePrestiti(string codiceFiscale)
     {
-        int rateMancanti = 0; //metto il conteggio
+        //int rateMancanti = 0; //metto il conteggio
+        int sommaPrestiti = 0;
 
-        return rateMancanti;
+        for (int i = 0; i < Prestiti.Count; i++)
+            if (codiceFiscale == Prestiti[i].Intestatario.CodiceFiscale)
+            {
+               sommaPrestiti = Prestiti[i].Ammontare + sommaPrestiti;
+            }
+
+        return sommaPrestiti;
     }
 
+    public int RateMancanti(string codiceFiscale, int valorerata)
+    {
+        int rateMancanti = 0;
+        int sommatotaleprestiti = AmmontareTotalePrestiti(codiceFiscale);
+        
+        
+        
+        return rateMancanti;
+    }
 
     public void StampaProspettoClienti()
     {
         //stampare per tutti i clienti
     }
 
-    internal void AggiungiPrestito(Prestito nuovoPrestito)
+    public bool AggiungiPrestito(Prestito nuovoPrestito)
     {
-        if (nuovoPrestito.)
+        if (nuovoPrestito.Ammontare < 0 || nuovoPrestito.ValoreRata < 0 ||
+            nuovoPrestito.Intestatario.Stipendio < 600
+            )
+        {
+            return false;
+        }
+
+        Prestito prestito = new Prestito(0, nuovoPrestito.Ammontare, nuovoPrestito.ValoreRata, nuovoPrestito.Fine, nuovoPrestito.Intestatario);
+        Prestiti.Add(prestito);
+
+        return true;
     }
 }

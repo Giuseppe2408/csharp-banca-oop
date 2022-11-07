@@ -9,13 +9,13 @@ public class Prestito
 
     public int ValoreRata { get; set; }
 
-    public DateOnly Inizio { get; set; }
+    public DateTime Inizio { get; set; }
 
     public DateOnly Fine { get; set; }
 
     public Cliente Intestatario { get; set; }
 
-    public Prestito(int iD, int ammontare, int valoreRata, DateOnly inizio, DateOnly fine, Cliente intestatario)
+    public Prestito(int iD, int ammontare, int valoreRata, DateTime inizio, DateOnly fine, Cliente intestatario)
     {
         ID = iD;
         Ammontare = ammontare;
@@ -31,7 +31,7 @@ public class Prestito
         ID = iD;
         Ammontare = ammontare;
         ValoreRata = valoreRata;
-        Inizio = new DateOnly();
+        Inizio = DateTime.Today;
         Fine = fine;
         Intestatario = intestatario;
     }
