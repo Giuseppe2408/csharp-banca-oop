@@ -78,10 +78,11 @@ public class Bank
         //int rateMancanti = 0; //metto il conteggio
         int sommaPrestiti = 0;
 
-        for (int i = 0; i < Prestiti.Count; i++)
-            if (codiceFiscale == Prestiti[i].Intestatario.CodiceFiscale)
+        List<Prestito> prestitiTrovati = RicercaPrestito(codiceFiscale);
+            
+            foreach (Prestito prestito in prestitiTrovati)
             {
-               sommaPrestiti = Prestiti[i].Ammontare + sommaPrestiti;
+                sommaPrestiti = prestito.Ammontare + sommaPrestiti;
             }
 
         return sommaPrestiti;
@@ -90,10 +91,12 @@ public class Bank
     public int RateMancanti(string codiceFiscale, int valorerata)
     {
         int rateMancanti = 0;
-        int sommatotaleprestiti = AmmontareTotalePrestiti(codiceFiscale);
-        
-        
-        
+        List<Prestito> prestitiTrovati = RicercaPrestito(codiceFiscale);
+        foreach(Prestito prestito in prestitiTrovati)
+        {
+            rateMancanti = prestito.Ammontare / valorerata;
+        }
+       
         return rateMancanti;
     }
 
