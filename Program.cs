@@ -44,7 +44,7 @@ else
 
     int ammontarePrestito = Convert.ToInt32(Console.ReadLine());
 
-    Prestito nuovoPrestito = new Prestito(0,ammontarePrestito, 200, new DateOnly(2025,12,25), esistente);
+    Prestito nuovoPrestito = new Prestito(0,ammontarePrestito, 100, new DateOnly(2021,12,25 ), new DateOnly(2022,12,25), esistente);
     ammontarePrestito = Convert.ToInt32(Console.ReadLine());
     Prestito nuovoPrestito1 = new Prestito(1, ammontarePrestito, 100, new DateOnly(2026, 05, 12), esistente);
 

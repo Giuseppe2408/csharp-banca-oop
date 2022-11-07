@@ -94,10 +94,15 @@ public class Bank
         List<Prestito> prestitiTrovati = RicercaPrestito(codiceFiscale);
         foreach(Prestito prestito in prestitiTrovati)
         {
-            rateMancanti = prestito.Ammontare / valorerata;
+            int divisione = prestito.Ammontare / valorerata;
+            DateTime inizioMod = prestito.Inizio.ToDateTime(TimeOnly.Parse("10:00 PM"));
+            DateTime fineMod = prestito.Fine.ToDateTime(TimeOnly.Parse("10:00 PM"));
+            TimeSpan sottrazioneMesi = inizioMod - fineMod; 
+            
+
 
         }
-       
+
         return rateMancanti;
     }
 
@@ -115,7 +120,7 @@ public class Bank
             return false;
         }
 
-        Prestito prestito = new Prestito(0, nuovoPrestito.Ammontare, nuovoPrestito.ValoreRata, nuovoPrestito.Fine, nuovoPrestito.Intestatario);
+        Prestito prestito = new Prestito(0, nuovoPrestito.Ammontare, nuovoPrestito.ValoreRata, nuovoPrestito.Inizio, nuovoPrestito.Fine, nuovoPrestito.Intestatario);
         Prestiti.Add(prestito);
 
         return true;
