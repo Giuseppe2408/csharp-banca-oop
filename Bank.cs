@@ -95,6 +95,7 @@ public class Bank
         foreach(Prestito prestito in prestitiTrovati)
         {
             rateMancanti = prestito.Ammontare / valorerata;
+
         }
        
         return rateMancanti;

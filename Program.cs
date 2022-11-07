@@ -2,6 +2,8 @@
 
 //contenitore dati della banca
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.ConstrainedExecution;
+
 Bank intesa = new Bank("Intesa San Paolo");
 
 
@@ -122,4 +124,6 @@ if (sceltaUtente == "si")
     }
 
 
+
+    //Per i clienti e per i prestiti si vuole stampare un prospetto riassuntivo con tutti i dati che li caratterizzano in un formato di tipo stringa a piacere.
 }
